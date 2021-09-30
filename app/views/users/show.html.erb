@@ -1,0 +1,63 @@
+<% if @user.id == current_user.id %>
+<h1>MY PAGE</h1>
+<% end %>
+
+
+
+<div class="profile-container">
+    <div class="user-image"><%= image_tag @user.image_url,size: "150x150",class:"rounded-circle" if @user.image? %></div>
+    <div class="name"><%= @user.name %></div>
+    <div class="profile"><%= @user.profile %></div>
+    <% if current_user.id == @user.id %>
+        <%= link_to "編集する", edit_user_registration_path %>
+    <% else %>
+        <% if @isRoom == true %>
+            <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+        <% else %>
+            <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, :value=> @user.id %>
+            <% end %>
+            <%= f.submit "チャットを始める" %>
+            <% end %>
+        <% end %>
+    <% end %>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <% @user.posts.each do |p| %>
+            <div class="col-sm post">
+            <p class="title"><%= p.title %></p>
+            <%= image_tag p.image_url, size: "250x250" if p.image? %>
+            <p><a href="/users/<%= p.user.id %>"><%= p.user.name %></a></p>
+            <p><%= p.created_at %></p>
+
+            <%= link_to "詳細へ", post_path(p.id) %>
+            
+            
+                <%= link_to "編集する", edit_post_path(p.id) %>
+                <%= button_to "削除する", post_path(p.id), method: :delete %>
+
+                <!-- いいね -->
+                <% if user_signed_in? %>
+                    <% if current_user.already_liked?(p) %>
+                        <%= link_to post_like_path(id: p.id, post_id: p.id), method: :delete do %>
+                            ♥<%= p.likes.count %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to post_likes_path(id: p.id, post_id: p.id), method: :post do %>
+                            ♡<%= p.likes.count %>
+                        <% end %>
+                    <% end %>
+                <% else %>
+                <p>いいねの数 = </p><%= p.likes.count %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+        
+           

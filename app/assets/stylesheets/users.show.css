@@ -1,0 +1,38 @@
+h1{
+    color: #696969;
+    text-align: center;
+    margin:  30px;
+}
+
+.profile-container{
+    text-align: center;
+    margin:60px auto;
+    padding:50px;
+    background-color: rgb(231, 228, 228);
+    width:50%;
+}
+@media screen and (max-width:680px) { 
+    .profile-container { 
+        width:80%;
+    }
+    .profile{
+        width:90%;
+    }
+   }
+
+.profile-image {
+    
+}
+
+.name{
+    font-size: 1.4em;
+    padding:10px;
+}
+.profile{
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 30px 20px 60px 20px;
+    margin:30px 30px;
+}
+
+

@@ -1,0 +1,46 @@
+.bird i{
+    font-size: 5em;
+}
+.container{
+    background-color:#fff;
+    text-align: center;
+    
+}
+
+.f{
+    width: 80%;
+    height: 50px;
+    border: none;
+    background-color: rgb(224, 238, 252);
+    border-bottom: rgb(92, 92, 92) solid 3px;
+    margin-bottom: 20px;
+}
+.t{
+    background-color: rgb(224, 238, 252);
+    margin-bottom: 0;
+    width: 80%;
+    color:#979797;
+    text-align: start;
+}
+
+.f:hover{
+    border-bottom: rgb(49, 174, 247) solid 3px;
+    
+}
+.t:hover{
+    color: dodgerblue;
+}
+
+.login{
+    width:80%;
+    background-color: rgb(143, 213, 253) ;
+    border: none;
+    color: #fff;
+    border-radius: 30px;
+    height: 50px;
+}
+.link a{
+    font-size: smaller;
+    color: rgb(49, 174, 247) ;
+    margin:20px 20px 60px 20px;
+}

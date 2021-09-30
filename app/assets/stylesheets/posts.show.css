@@ -1,0 +1,22 @@
+.comment{
+    border: #696969 solid 1px;
+    padding:20px;
+    margin: 30px auto;
+    width:40%;
+
+}
+.show{
+    margin: 50px;
+    text-align: center;
+}
+.comment-wrapper p{
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 80px;
+    color: #696969;
+}
+.comment-form{
+    text-align: center;
+    margin:40px auto;
+}

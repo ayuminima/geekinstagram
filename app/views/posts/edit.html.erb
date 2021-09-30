@@ -1,0 +1,17 @@
+編集ページ
+
+<%= form_for @post do |p| %>
+    <div class="field">
+        <%= p.label :title %>
+        <%= p.text_field :title,size: 100 %>
+    </div>
+    <div class="field">
+        <%= p.label :image %>
+        <%= p.file_field :image %>
+    </div>
+    <%= p.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", posts_path %>
+
+

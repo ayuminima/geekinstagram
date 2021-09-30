@@ -1,0 +1,51 @@
+
+<h2>投稿一覧ページ</h2>
+<%= link_to "新規投稿ページへ" ,new_post_path %>
+<div class="search">
+    <h4>投稿を検索</h4>
+    <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+        <%= text_field_tag :search  %>
+        <%= submit_tag '検索する'  %>
+    <% end %>
+</div>
+
+<div class="container">
+    <div class="row">
+        <% @posts.each do |p| %>
+            <div class="col-sm post">
+            <p class="title"><%= p.title %></p>
+            <%= image_tag p.image_url, size: "250x250" if p.image? %>
+            <p><a href="/users/<%= p.user.id %>"><%= p.user.name %></a></p>
+            <p><%= p.created_at %></p>
+
+            <%= link_to "詳細へ", post_path(p.id) %>
+            
+            <% if user_signed_in? && current_user.id == p.user_id %>
+                <%= link_to "編集する", edit_post_path(p.id) %>
+                <%= button_to "削除する", post_path(p.id), method: :delete %>
+            <% end %>
+                <!-- いいね -->
+                <% if user_signed_in? %>
+                    <% if current_user.already_liked?(p) %>
+                        <%= link_to post_like_path(id: p.id, post_id: p.id), method: :delete do %>
+                            ♥<%= p.likes.count %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to post_likes_path(id: p.id, post_id: p.id), method: :post do %>
+                            ♡<%= p.likes.count %>
+                        <% end %>
+                    <% end %>
+                <% else %>
+                <p>いいねの数 = </p><%= p.likes.count %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+
+
+
+
+<%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+

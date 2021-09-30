@@ -1,0 +1,14 @@
+.new-post .field{
+    padding: 100px 40px 0 40px;
+    margin:30px;
+}
+.new-post{
+    margin:50px;
+    padding:80px auto;
+    background-color: rgb(225, 231, 250);
+
+}
+.submit{
+    margin: 80px;
+    
+}

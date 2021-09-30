@@ -1,0 +1,16 @@
+<h1>写真を投稿する</h1>
+<div class="new-post">
+<%= form_for @post do |p| %>
+    <div class="field">
+        <%= p.label :title %>
+        <%= p.text_field :title,size: 100 %>
+    </div>
+    <div class="field">
+        <%= p.label :image %>
+        <%= p.file_field :image %>
+    </div>
+    <%= p.submit "投稿する", class: "submit" %>
+<% end %>
+</div>
+
+<%= link_to "一覧に戻る", posts_path %>

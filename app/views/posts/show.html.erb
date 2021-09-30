@@ -1,0 +1,32 @@
+<h1>詳細ページ</h1>
+<div class="show">
+  <p class="title"><%= @post.title %></p>
+  <p><%= @post.created_at %></p>
+  <p><%= image_tag @post.image_url, size: "250x250" if @post.image? %></p>
+</div>
+
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div class="comment">
+      <%= c.user.name unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+      <%= link_to "削除する", post_comment_path(c.id), method: :delete %>
+    </div>
+      <br>
+  <% end %>
+
+  <div class="comment-form">
+    <% if user_signed_in? %>
+      <%= form_with(model: [@post, @comment], local: true) do |f| %>
+        <%= f.text_area :content %>
+        <%= button_tag type: "submit" do %>
+          <i class="far fa-comments"></i> コメントする
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "一覧に戻る", posts_path %>
